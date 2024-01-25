@@ -4,11 +4,10 @@ const form=document.querySelector('form');
 form.addEventListener('submit',(e)=>{
 	e.preventDefault();
 
-	const d = new Date();
-    d.setTime(d.getTime() + (60 * 60 * 24 * 1000));
-    //set a cookie
-    document.cookie = `fontSize=${form.fontsize.value}; expires=${d.toUTCString()}`
-    document.cookie = `fontColor=${form.fontcolor.value}; expires=${d.toUTCString()}`
+	const date = new Date();
+    date.setTime(date.getTime() + (60 * 60 * 24 * 1000));
+    document.cookie = `fontSize=${form.fontsize.value}; expires=${date.toUTCString()}`
+    document.cookie = `fontColor=${form.fontcolor.value}; expires=${date.toUTCString()}`
 	// console.log(document.cookie)
 })
 
