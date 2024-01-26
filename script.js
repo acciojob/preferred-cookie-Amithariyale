@@ -1,27 +1,23 @@
 //your JS code here. If required.
+document.getElementById("myForm").addEventListener("submit",(e)=>{
 
-const form=document.querySelector('form');
-form.addEventListener('submit',(e)=>{
 	e.preventDefault();
+	let fontsize = document.getElementById("fontsize").value;
+	let fontcolor = document.getElementById("fontcolor").value;
 
-	const date = new Date();
-    date.setTime(date.getTime() + (60 * 60 * 24 * 1000));
-    document.cookie = `fontSize=${form.fontsize.value}; expires=${date.toUTCString()}`
-    document.cookie = `fontColor=${form.fontcolor.value}; expires=${date.toUTCString()}`
-	// console.log(document.cookie)
+	document.cookie = `fontsize=${fontsize};`
+	document.cookie = `fontcolor=${fontcolor};`
+	
+document.documentElement.style.setProperty("--fontsize", `${fontsize??16}px`);
+document.documentElement.style.setProperty("--fontcolor", `${fontcolor??"#000"}`);
 })
 
-document.addEventListener("DOMContentLoaded",()=>{
-	const arr=document.cookie.split("; ").map((item)=>item.split("="));
-	const myCookieObj=Object.fromEntries(arr);
-	// console.log(myCookieObj);
+let cookies = Object.fromEntries(
+	document.cookie.split("; ").
+	map((item)=>item.split("=")));
 
-	form.fontsize.value=myCookieObj.fontSize ?? "16";
-	form.fontcolor.value=myCookieObj.fontColor ?? "#000000";
-})
+document.getElementById("fontsize").value = cookies.fontsize??16;
+document.getElementById("fontcolor").value = cookies.fontcolor??"#000000";
 
-
-
-
-
-
+document.documentElement.style.setProperty("--fontsize", `${cookies.fontsize??16}px`);
+document.documentElement.style.setProperty("--fontcolor", `${cookies.fontcolor??"#000"}`);
