@@ -21,3 +21,8 @@ document.getElementById("fontcolor").value = cookies.fontcolor??"#000000";
 
 document.documentElement.style.setProperty("--fontsize", `${cookies.fontsize??16}px`);
 document.documentElement.style.setProperty("--fontcolor", `${cookies.fontcolor??"#000"}`);
+
+
+
+
+
